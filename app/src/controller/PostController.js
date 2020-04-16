@@ -1,11 +1,11 @@
-exports.getAllPosts = (req, res) => {
-    res.json(
-        {
-            "posts": [
-                { "title": "1", "likes": 230 },
-                { "title": "2", "likes": 130 }
+const postService = require('../service/PostService')
+const Post = require('../model/Post')
 
-            ]
-        }
-    )
+exports.getAllPosts = (req, res) => {
+    postService.findAll(res)
+}
+
+exports.addPost = (req, res) => {
+    postService.addPost(new Post(req.body))
+    res.send('created')
 }
